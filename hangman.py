@@ -51,17 +51,27 @@ word = "test"
 num_wrong_guesses = 0
 wrong_letters = []
 correct_guesses = []
+for x in list(word):
+    correct_guesses.append("_")
 
-while num_wrong_guesses < num_wrong_guesses_allowed:
+while num_wrong_guesses <= num_wrong_guesses_allowed:
     guess = input("what's your letter? ").lower()
     if guess in word:
-      print("yay")
-      for x in list(word):
-          correct_guesses.append(guess)
+      print("Correct")
+      for ind, char in enumerate(list(word)):
+          if char in guess:
+            del correct_guesses[ind]
+            correct_guesses.insert(ind, guess)
+      draw_hangman(num_wrong_guesses)
       print(correct_guesses)
     else:
-      print("nope")
+      print("Try Again")
+      num_wrong_guesses += 1
       draw_hangman(num_wrong_guesses)
       wrong_letters.append(guess)
       print(wrong_letters)
-      num_wrong_guesses += 1
+    if word == ''.join(correct_guesses):
+        print("You Win!")
+        break
+    if num_wrong_guesses > num_wrong_guesses_allowed:
+        print("You lose")
