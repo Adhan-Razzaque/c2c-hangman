@@ -1,3 +1,4 @@
+import random
 hangman_parts = [ "head", "left arm", "torso", "right arm", "left leg", "right leg" ]
 num_wrong_guesses_allowed = len(hangman_parts)
 words = [
@@ -46,8 +47,7 @@ def draw_hangman(num_wrong_guesses):
     output = output + "____\n\n"
     print(output)
 
-
-word = "test"
+word = random.choice(words)
 num_wrong_guesses = 0
 wrong_letters = []
 correct_guesses = []
@@ -72,6 +72,12 @@ while num_wrong_guesses <= num_wrong_guesses_allowed:
       print(wrong_letters)
     if word == ''.join(correct_guesses):
         print("You Win!")
+        ##do_over = input("Would you like to play again?").lower()
+        ##if do_over == "yes":
+            ##num_wrong_guesses = 0
+            ##wrong_letters = []
+            ##correct_guesses = []
+        ##else:
         break
     if num_wrong_guesses > num_wrong_guesses_allowed:
         print("You lose")
