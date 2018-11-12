@@ -55,7 +55,7 @@ for x in list(word):
     correct_guesses.append("_")
 
 while num_wrong_guesses <= num_wrong_guesses_allowed:
-    guess = input("what's your letter? ").lower()
+    guess = input("what's your letter? ").lower()[:1]
     if guess in word:
       print("Correct")
       for ind, char in enumerate(list(word)):
